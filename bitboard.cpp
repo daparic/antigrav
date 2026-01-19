@@ -44,6 +44,7 @@ void print_bitboard(U64 bitboard) {
     std::cout << "     Bitboard: " << bitboard << "\n\n";
 }
 
+#ifndef BITBOARD_LIB
 int main() {
     // Example: Initialize bitboards for white pawns
     U64 white_pawns = 0ULL;
@@ -69,3 +70,4 @@ int main() {
 
     return 0;
 }
+#endif
