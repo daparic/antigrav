@@ -66,6 +66,7 @@ int main() {
     // Pop the e2 pawn (e4 opening representation start)
     pop_bit(white_pawns, e2);
     std::cout << "After moving e2 pawn:";
+    set_bit(white_pawns, e4);
     print_bitboard(white_pawns);
 
     return 0;
