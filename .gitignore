@@ -1,0 +1,11 @@
+# Binaries
+bitboard
+test_parens
+test_values
+
+# Build directories
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
