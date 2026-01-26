@@ -125,3 +125,16 @@ This project implements a basic Chess Bitboard system in C++. It includes bit ma
     - Implemented image loading and alpha blending to render pieces on top of the board squares.
     - Verified by generating images for standard positions (e.g., KiwiPete).
 - **Usage:** `./build/bitboard --fen "<FEN_STRING>" --output "output.png"`
+
+### 13. Mate-in-2 Solver
+**User Request:** Create a function that accepts a FEN string mate-in-2 chess puzzle and then solve the puzzle.
+
+**Agent Action:**
+- **Implementation:** Created `mate2.cpp` which implements a depth-3 search (White -> Black -> White) to find forced checkmates.
+- **Logic:**
+    - Generates all legal moves for White.
+    - Validates that for *every* legal Black response, White has an immediate checkmate.
+- **Usage:** `./build/mate2 "<FEN_STRING>"`
+- **Example:**
+    - Input: `r1bq2r1/b4pk1/p1pp1p2/1p2pP2/1P2P1PB/3P4/1PPQ2P1/R3K2R w KQ - 0 1`
+    - Output: `Mate in 2 found: d2h6`

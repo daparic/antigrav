@@ -10,3 +10,6 @@ target_compile_definitions(perft PRIVATE BITBOARD_LIB)
 
 add_executable(test_fen test_fen.cpp movegen.cpp attacks.cpp bitboard.cpp)
 target_compile_definitions(test_fen PRIVATE BITBOARD_LIB)
+
+add_executable(mate2 mate2.cpp movegen.cpp attacks.cpp bitboard.cpp)
+target_compile_definitions(mate2 PRIVATE BITBOARD_LIB)
