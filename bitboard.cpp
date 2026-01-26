@@ -1,33 +1,6 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <cstdint>
-
-// Bitboard data type
-typedef uint64_t U64;
-
-// Chess board definitions
-enum {
-    a8, b8, c8, d8, e8, f8, g8, h8,
-    a7, b7, c7, d7, e7, f7, g7, h7,
-    a6, b6, c6, d6, e6, f6, g6, h6,
-    a5, b5, c5, d5, e5, f5, g5, h5,
-    a4, b4, c4, d4, e4, f4, g4, h4,
-    a3, b3, c3, d3, e3, f3, g3, h3,
-    a2, b2, c2, d2, e2, f2, g2, h2,
-    a1, b1, c1, d1, e1, f1, g1, h1,
-    no_sq
-};
-
-enum {
-    P, N, B, R, Q, K, // White pieces
-    p, n, b, r, q, k  // Black pieces
-};
-
-// Bit manipulation macros/functions
-#define get_bit(bitboard, square) ((bitboard) & (1ULL << (square)))
-#define set_bit(bitboard, square) ((bitboard) |= (1ULL << (square)))
-#define pop_bit(bitboard, square) ((bitboard) &= ~(1ULL << (square)))
+#include "bitboard.h"
+#include "attacks.h"
+#include "movegen.h"
 
 // Helper function to print bitboard
 void print_bitboard(U64 bitboard) {
@@ -60,6 +33,8 @@ int main() {
     set_bit(white_pawns, g2);
     set_bit(white_pawns, h2);
     
+    init_leapers_attacks();
+    
     std::cout << "White Pawns:";
     print_bitboard(white_pawns);
 
@@ -69,6 +44,74 @@ int main() {
     set_bit(white_pawns, e4);
     print_bitboard(white_pawns);
 
+    std::cout << "Pawn attacks for e4 (white side):";
+    print_bitboard(pawn_attacks[0][e4]);
+    
+    std::cout << "Knight attacks for g1:";
+    print_bitboard(knight_attacks[g1]);
+
+    std::cout << "King attacks for e1:";
+    print_bitboard(king_attacks[e1]);
+
+    // Slider attack verification
+    U64 occupancy = 0ULL;
+    set_bit(occupancy, d7);
+    set_bit(occupancy, b4);
+    set_bit(occupancy, g4);
+    set_bit(occupancy, d2);
+    
+    std::cout << "Occupancy for Rook at d4:";
+    print_bitboard(occupancy);
+
+    std::cout << "Rook attacks for d4 (with blockers):";
+    print_bitboard(get_rook_attacks(d4, occupancy));
+
+    occupancy = 0ULL;
+    set_bit(occupancy, b6); // UL path blocker
+    set_bit(occupancy, g7); // UR path blocker
+    set_bit(occupancy, f2); // DR path blocker
+    // no blocker DL
+    
+    std::cout << "Occupancy for Bishop at d4:";
+    print_bitboard(occupancy);
+    
+    std::cout << "Bishop attacks for d4 (with blockers):";
+    print_bitboard(get_bishop_attacks(d4, occupancy));
+
+    // Move Generation Verification
+    std::cout << "\n--- Move Generation Test ---\n";
+    
+    Board board;
+    // Clear board
+    for (int i = 0; i < 12; i++) board.bitboards[i] = 0ULL;
+    for (int i = 0; i < 3; i++) board.occupancies[i] = 0ULL;
+    
+    // Setup position
+    // White King at e1, White Pawn at e2
+    set_bit(board.bitboards[K], e1);
+    set_bit(board.bitboards[P], e2);
+    
+    // Black King at e8, Black Pawn at d3 (capture target)
+    set_bit(board.bitboards[k], e8);
+    set_bit(board.bitboards[p], d3);
+    
+    board.side = 0; // White to move
+    board.enpassant = no_sq;
+    board.castle = 0;
+    
+    // Update occupancies
+    board.occupancies[0] = board.bitboards[P] | board.bitboards[K];
+    board.occupancies[1] = board.bitboards[p] | board.bitboards[k];
+    board.occupancies[2] = board.occupancies[0] | board.occupancies[1];
+    
+    std::cout << "Board Position:";
+    print_bitboard(board.occupancies[2]);
+    
+    Moves moves;
+    generate_moves(board, moves);
+    
+    print_move_list(moves);
+    
     return 0;
 }
 #endif

@@ -98,3 +98,18 @@ This project implements a basic Chess Bitboard system in C++. It includes bit ma
 - Updated `README.md` (this section) to include recent events.
 - Committed `README.md`.
 - Pushed changes to remote.
+
+### 11. Move Generator & Perft Implementation
+**User Request:** Are there parts of the code that can be made faster using CUDA?
+
+**Agent Analysis & Action:**
+- **Analysis**: Determined the codebase (basic bitboard) was too simple for CUDA.
+- **Decision**: Implemented a Move Generator and Perft (Performance Test) framework to create the high-density workload required to justify GPU optimization.
+- **Implementation**:
+    - **Attack Tables** (`attacks.cpp`): Implemented Leaper (Pawn, Knight, King) and Slider (Rook, Bishop, Queen) attacks.
+    - **Move Generator** (`movegen.cpp`): Implemented `generate_moves` (pseudo-legal) and `make_move` (execution & safety checks).
+    - **Perft** (`perft.cpp`): Recursive node counter to verify move generation correctness.
+- **Verification**:
+    - Validated against standard positions.
+    - Start Position (Depth 3): **8,902 nodes**.
+    - KiwiPete (Depth 1): **48 nodes**.
