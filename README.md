@@ -138,3 +138,12 @@ This project implements a basic Chess Bitboard system in C++. It includes bit ma
 - **Example:**
     - Input: `r1bq2r1/b4pk1/p1pp1p2/1p2pP2/1P2P1PB/3P4/1PPQ2P1/R3K2R w KQ - 0 1`
     - Output: `Mate in 2 found: d2h6`
+
+### 14. VS Code Debugging
+**User Request:** Enable Debug configuration in .vscode settings.
+
+**Agent Action:**
+- **Configuration:** Updated `.vscode/tasks.json` to include a `configure debug` task that explicitly sets `-DCMAKE_BUILD_TYPE=Debug`.
+- **Dependency:** Made the `build mate2` task depend on `configure debug`.
+- **Launch:** Added a "Debug mate2" configuration in `.vscode/launch.json`.
+- **Result:** Pressing F5 now automatically builds with debug symbols and launches the debugger.

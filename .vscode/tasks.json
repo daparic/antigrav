@@ -21,6 +21,22 @@
             "problemMatcher": [
                 "$gcc"
             ]
+        },
+        {
+            "label": "configure debug",
+            "type": "shell",
+            "command": "cmake -DCMAKE_BUILD_TYPE=Debug -S . -B build",
+            "group": "build"
+        },
+        {
+            "label": "build mate2",
+            "type": "shell",
+            "command": "cmake --build build --target mate2",
+            "group": "build",
+            "dependsOn": "configure debug",
+            "problemMatcher": [
+                "$gcc"
+            ]
         }
     ]
 }

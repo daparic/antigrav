@@ -33,6 +33,28 @@
             "externalConsole": false,
             "MIMode": "gdb",
             "preLaunchTask": "build perft"
+        },
+        {
+            "name": "Debug mate2",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/mate2",
+            "args": [
+                "r1bq2r1/b4pk1/p1pp1p2/1p2pP2/1P2P1PB/3P4/1PPQ2P1/R3K2R w KQ - 0 1"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "preLaunchTask": "build mate2",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
         }
     ]
 }
