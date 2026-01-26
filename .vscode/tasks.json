@@ -31,8 +31,8 @@
                     "-G",
                     "Unix Makefiles",
                     "-DCMAKE_BUILD_TYPE=Debug",
-                    "-DCMAKE_C_COMPILER=gcc-13",
-                    "-DCMAKE_CXX_COMPILER=g++-13"
+                    "-DCMAKE_C_COMPILER=gcc",
+                    "-DCMAKE_CXX_COMPILER=g++"
                 ]
             },
             "group": "build",
