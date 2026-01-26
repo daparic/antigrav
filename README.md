@@ -154,3 +154,12 @@ This project implements a basic Chess Bitboard system in C++. It includes bit ma
 **Agent Analysis:**
 - Analyzed `mate2.cpp` and confirmed it uses an **iterative brute-force** approach (nested loops), not recursion.
 - The depth is fixed at 3 ply (White -> Black -> White).
+
+### 16. Bitboard Representation Inquiry
+**User Request:** What's the binary bitboard representation of the FEN string "kbK5/pp6/1P6/8/8/8/8/R7 w - - 0 1"?
+
+**Agent Action:**
+- **Calculated**: Used a temporary utility to extract bitboards for the given FEN.
+- **Result**: Provided 64-bit binary strings for all piece occupancies.
+    - Example (All Occupancy): `0000000100000000000000000000000000000000000000100000001100000111`
+    - Note: MSB (left) is h1, LSB (right) is a8.
