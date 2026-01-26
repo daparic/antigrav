@@ -2,7 +2,149 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug test_fen",
+            "name": "Debug Bitboard (WSL)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/dx/src/ag/antigrav/build/bitboard",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "/home/dx/src/ag/antigrav",
+            "environment": [],
+            "externalConsole": false,
+            "pipeTransport": {
+                "debuggerPath": "/usr/bin/gdb",
+                "pipeProgram": "c:\\windows\\system32\\wsl.exe",
+                "pipeArgs": [
+                    "-d",
+                    "UBUNTU24.04",
+                    "bash",
+                    "-c"
+                ],
+                "pipeCwd": ""
+            },
+            "sourceFileMap": {
+                "/home/dx/src/ag/antigrav": "${workspaceFolder}"
+            },
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "CMake: Build Bitboard"
+        },
+        {
+            "name": "Debug Perft (WSL)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/dx/src/ag/antigrav/build/perft",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "/home/dx/src/ag/antigrav",
+            "environment": [],
+            "externalConsole": false,
+            "pipeTransport": {
+                "debuggerPath": "/usr/bin/gdb",
+                "pipeProgram": "c:\\windows\\system32\\wsl.exe",
+                "pipeArgs": [
+                    "-d",
+                    "UBUNTU24.04",
+                    "bash",
+                    "-c"
+                ],
+                "pipeCwd": ""
+            },
+            "sourceFileMap": {
+                "/home/dx/src/ag/antigrav": "${workspaceFolder}"
+            },
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "CMake: Build Perft"
+        },
+        {
+            "name": "Debug Perft (Native Linux)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/perft",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "CMake: Build Perft"
+        },
+        {
+            "name": "Debug Bitboard (Native Linux)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bitboard",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "CMake: Build Bitboard"
+        },
+        {
+            "name": "Debug Test FEN (WSL)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/dx/src/ag/antigrav/build/test_fen",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "/home/dx/src/ag/antigrav",
+            "environment": [],
+            "externalConsole": false,
+            "pipeTransport": {
+                "debuggerPath": "/usr/bin/gdb",
+                "pipeProgram": "c:\\windows\\system32\\wsl.exe",
+                "pipeArgs": [
+                    "-d",
+                    "UBUNTU24.04",
+                    "bash",
+                    "-c"
+                ],
+                "pipeCwd": ""
+            },
+            "sourceFileMap": {
+                "/home/dx/src/ag/antigrav": "${workspaceFolder}"
+            },
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "CMake: Build Test FEN"
+        },
+        {
+            "name": "Debug Test FEN (Native Linux)",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/test_fen",
@@ -19,23 +161,46 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "build test_fen"
+            "preLaunchTask": "CMake: Build Test FEN"
         },
         {
-            "name": "Debug perft",
+            "name": "Debug Mate2 (WSL)",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/perft",
-            "args": [],
+            "program": "/home/dx/src/ag/antigrav/build/mate2",
+            "args": [
+                "kbK5/pp6/1P6/8/8/8/8/R7 w - - 0 1"
+            ],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+            "cwd": "/home/dx/src/ag/antigrav",
             "environment": [],
             "externalConsole": false,
+            "pipeTransport": {
+                "debuggerPath": "/usr/bin/gdb",
+                "pipeProgram": "c:\\windows\\system32\\wsl.exe",
+                "pipeArgs": [
+                    "-d",
+                    "UBUNTU24.04",
+                    "bash",
+                    "-c"
+                ],
+                "pipeCwd": ""
+            },
+            "sourceFileMap": {
+                "/home/dx/src/ag/antigrav": "${workspaceFolder}"
+            },
             "MIMode": "gdb",
-            "preLaunchTask": "build perft"
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "CMake: Build Mate2"
         },
         {
-            "name": "Debug mate2",
+            "name": "Debug Mate2 (Native Linux)",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/mate2",
@@ -47,14 +212,14 @@
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "preLaunchTask": "build mate2",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
                     "text": "-enable-pretty-printing",
                     "ignoreFailures": true
                 }
-            ]
+            ],
+            "preLaunchTask": "CMake: Build Mate2"
         }
     ]
 }

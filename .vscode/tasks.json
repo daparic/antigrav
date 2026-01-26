@@ -2,41 +2,182 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build test_fen",
+            "label": "CMake: Build Bitboard",
             "type": "shell",
-            "command": "cmake --build build --target test_fen",
+            "windows": {
+                "command": "wsl",
+                "args": [
+                    "-d",
+                    "UBUNTU24.04",
+                    "cmake",
+                    "--build",
+                    "build",
+                    "--target",
+                    "bitboard",
+                    "--",
+                    "-j"
+                ]
+            },
+            "linux": {
+                "command": "cmake",
+                "args": [
+                    "--build",
+                    "build",
+                    "--target",
+                    "bitboard",
+                    "--",
+                    "-j"
+                ]
+            },
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": [
-                "$gcc"
-            ]
+            "dependsOn": "CMake: Configure",
+            "problemMatcher": "$gcc",
+            "detail": "Builds the bitboard executable"
         },
         {
-            "label": "build perft",
+            "label": "CMake: Build Perft",
             "type": "shell",
-            "command": "cmake --build build --target perft",
+            "windows": {
+                "command": "wsl",
+                "args": [
+                    "-d",
+                    "UBUNTU24.04",
+                    "cmake",
+                    "--build",
+                    "build",
+                    "--target",
+                    "perft",
+                    "--",
+                    "-j"
+                ]
+            },
+            "linux": {
+                "command": "cmake",
+                "args": [
+                    "--build",
+                    "build",
+                    "--target",
+                    "perft",
+                    "--",
+                    "-j"
+                ]
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "dependsOn": "CMake: Configure",
+            "problemMatcher": "$gcc",
+            "detail": "Builds the perft executable"
+        },
+        {
+            "label": "CMake: Build Test FEN",
+            "type": "shell",
+            "windows": {
+                "command": "wsl",
+                "args": [
+                    "-d",
+                    "UBUNTU24.04",
+                    "cmake",
+                    "--build",
+                    "build",
+                    "--target",
+                    "test_fen",
+                    "--",
+                    "-j"
+                ]
+            },
+            "linux": {
+                "command": "cmake",
+                "args": [
+                    "--build",
+                    "build",
+                    "--target",
+                    "test_fen",
+                    "--",
+                    "-j"
+                ]
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "dependsOn": "CMake: Configure",
+            "problemMatcher": "$gcc",
+            "detail": "Builds the test_fen executable"
+        },
+        {
+            "label": "CMake: Build Mate2",
+            "type": "shell",
+            "windows": {
+                "command": "wsl",
+                "args": [
+                    "-d",
+                    "UBUNTU24.04",
+                    "cmake",
+                    "--build",
+                    "build",
+                    "--target",
+                    "mate2",
+                    "--",
+                    "-j"
+                ]
+            },
+            "linux": {
+                "command": "cmake",
+                "args": [
+                    "--build",
+                    "build",
+                    "--target",
+                    "mate2",
+                    "--",
+                    "-j"
+                ]
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "dependsOn": "CMake: Configure",
+            "problemMatcher": "$gcc",
+            "detail": "Builds the mate2 executable"
+        },
+        {
+            "label": "CMake: Configure",
+            "type": "shell",
+            "windows": {
+                "command": "wsl",
+                "args": [
+                    "-d",
+                    "UBUNTU24.04",
+                    "cmake",
+                    "-S",
+                    ".",
+                    "-B",
+                    "build",
+                    "-G",
+                    "Unix Makefiles",
+                    "-DCMAKE_BUILD_TYPE=Debug"
+                ]
+            },
+            "linux": {
+                "command": "cmake",
+                "args": [
+                    "-S",
+                    ".",
+                    "-B",
+                    "build",
+                    "-G",
+                    "Unix Makefiles",
+                    "-DCMAKE_BUILD_TYPE=Debug"
+                ]
+            },
             "group": "build",
-            "problemMatcher": [
-                "$gcc"
-            ]
-        },
-        {
-            "label": "configure debug",
-            "type": "shell",
-            "command": "cmake -DCMAKE_BUILD_TYPE=Debug -S . -B build",
-            "group": "build"
-        },
-        {
-            "label": "build mate2",
-            "type": "shell",
-            "command": "cmake --build build --target mate2",
-            "group": "build",
-            "dependsOn": "configure debug",
-            "problemMatcher": [
-                "$gcc"
-            ]
+            "problemMatcher": [],
+            "detail": "Configures the project using CMake"
         }
     ]
 }
