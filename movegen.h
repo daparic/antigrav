@@ -55,6 +55,8 @@ struct Board {
     int side; // 0=white, 1=black
     int enpassant; // square, or no_sq
     int castle; // bitmask: 1=WK, 2=WQ, 4=BK, 8=BQ (example)
+    int rule50; // Halfmove clock
+    int fullmove; // Fullmove number
 };
 
 // Functions
@@ -66,5 +68,6 @@ void print_move_list(const Moves& moves);
 
 // FEN parsing (minimal helper for perft tests)
 void parse_fen(char* fen, Board& board);
+std::string board_to_fen(const Board& board);
 
 #endif

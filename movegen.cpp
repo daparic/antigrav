@@ -341,18 +341,20 @@ void parse_fen(char* fen, Board& board) {
         
         if ((*fen >= 'a' && *fen <= 'z') || (*fen >= 'A' && *fen <= 'Z')) {
             int piece = -1;
-            if (*fen == 'P') piece = P;
-            else if (*fen == 'N') piece = N;
-            else if (*fen == 'B') piece = B;
-            else if (*fen == 'R') piece = R;
-            else if (*fen == 'Q') piece = Q;
-            else if (*fen == 'K') piece = K;
-            else if (*fen == 'p') piece = p;
-            else if (*fen == 'n') piece = n;
-            else if (*fen == 'b') piece = b;
-            else if (*fen == 'r') piece = r;
-            else if (*fen == 'q') piece = q;
-            else if (*fen == 'k') piece = k;
+            switch (*fen) {
+                case 'P': piece = P; break;
+                case 'N': piece = N; break;
+                case 'B': piece = B; break;
+                case 'R': piece = R; break;
+                case 'Q': piece = Q; break;
+                case 'K': piece = K; break;
+                case 'p': piece = p; break;
+                case 'n': piece = n; break;
+                case 'b': piece = b; break;
+                case 'r': piece = r; break;
+                case 'q': piece = q; break;
+                case 'k': piece = k; break;
+            }
             
             if (piece != -1) set_bit(board.bitboards[piece], square);
             file++;
@@ -397,14 +399,119 @@ void parse_fen(char* fen, Board& board) {
     
     // Parse Castling
     while (*fen != ' ') {
-        if (*fen == 'K') board.castle |= 1;
-        else if (*fen == 'Q') board.castle |= 2;
-        else if (*fen == 'k') board.castle |= 4;
-        else if (*fen == 'q') board.castle |= 8;
-        else if (*fen == '-') { /* do nothing */ }
+        switch (*fen) {
+            case 'K': board.castle |= 1; break;
+            case 'Q': board.castle |= 2; break;
+            case 'k': board.castle |= 4; break;
+            case 'q': board.castle |= 8; break;
+            case '-': break;
+        }
         fen++;
     }
     fen++;
     
-    // EP parsing skipped
+    // EP parsing
+    if (*fen != '-') {
+        int file = fen[0] - 'a';
+        int rank = 8 - (fen[1] - '0');
+        board.enpassant = rank * 8 + file;
+        fen += 2;
+    } else {
+        board.enpassant = no_sq;
+        fen++;
+    }
+    
+    // Halfmove & Fullmove
+    while (*fen == ' ') fen++;
+    
+    // Rule 50
+    board.rule50 = 0;
+    if (*fen >= '0' && *fen <= '9') {
+        board.rule50 = atoi(fen);
+        while (*fen >= '0' && *fen <= '9') fen++;
+    }
+    
+    while (*fen == ' ') fen++;
+    
+    // Fullmove
+    board.fullmove = 1;
+     if (*fen >= '0' && *fen <= '9') {
+        board.fullmove = atoi(fen);
+    }
+}
+
+// Generate FEN from board
+std::string board_to_fen(const Board& board) {
+    std::string fen = "";
+    int empty_count = 0;
+    
+    for (int rank = 0; rank < 8; rank++) {
+        for (int file = 0; file < 8; file++) {
+            int square = rank * 8 + file;
+            int piece = -1;
+            
+            for (int p = P; p <= k; p++) {
+                if (get_bit(board.bitboards[p], square)) {
+                    piece = p;
+                    break;
+                }
+            }
+            
+            if (piece == -1) {
+                empty_count++;
+            } else {
+                if (empty_count > 0) {
+                    fen += std::to_string(empty_count);
+                    empty_count = 0;
+                }
+                
+                char ascii_pieces[] = "PNBRQKpnbrqk";
+                fen += ascii_pieces[piece];
+            }
+        }
+        
+        if (empty_count > 0) {
+            fen += std::to_string(empty_count);
+            empty_count = 0;
+        }
+        
+        if (rank < 7) fen += "/";
+    }
+    
+    fen += " ";
+    fen += (board.side == 0) ? "w" : "b";
+    fen += " ";
+    
+    std::string castling = "";
+    if (board.castle & 1) castling += "K";
+    if (board.castle & 2) castling += "Q";
+    if (board.castle & 4) castling += "k";
+    if (board.castle & 8) castling += "q";
+    if (castling == "") castling = "-";
+    fen += castling;
+    
+    fen += " ";
+    
+    if (board.enpassant != no_sq) {
+        const char* square_to_coordinates[] = {
+            "a8", "b8", "c8", "d8", "e8", "f8", "g8", "h8",
+            "a7", "b7", "c7", "d7", "e7", "f7", "g7", "h7",
+            "a6", "b6", "c6", "d6", "e6", "f6", "g6", "h6",
+            "a5", "b5", "c5", "d5", "e5", "f5", "g5", "h5",
+            "a4", "b4", "c4", "d4", "e4", "f4", "g4", "h4",
+            "a3", "b3", "c3", "d3", "e3", "f3", "g3", "h3",
+            "a2", "b2", "c2", "d2", "e2", "f2", "g2", "h2",
+            "a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1",
+        };
+        fen += square_to_coordinates[board.enpassant];
+    } else {
+        fen += "-";
+    }
+    
+    fen += " ";
+    fen += std::to_string(board.rule50);
+    fen += " ";
+    fen += std::to_string(board.fullmove);
+    
+    return fen;
 }

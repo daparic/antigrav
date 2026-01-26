@@ -2,44 +2,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug Bitboard (WSL)",
+            "name": "Debug test_fen",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/dx/src/ag/antigrav/build/bitboard",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "/home/dx/src/ag/antigrav",
-            "environment": [],
-            "externalConsole": false,
-            "pipeTransport": {
-                "debuggerPath": "/usr/bin/gdb",
-                "pipeProgram": "c:\\windows\\system32\\wsl.exe",
-                "pipeArgs": [
-                    "-d",
-                    "UBUNTU24.04",
-                    "bash",
-                    "-c"
-                ],
-                "pipeCwd": ""
-            },
-            "sourceFileMap": {
-                "/home/dx/src/ag/antigrav": "${workspaceFolder}"
-            },
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ],
-            "preLaunchTask": "CMake: Build Bitboard"
-        },
-        {
-            "name": "Debug Bitboard (Native Linux)",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/build/bitboard",
+            "program": "${workspaceFolder}/build/test_fen",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -53,7 +19,20 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "CMake: Build Bitboard"
+            "preLaunchTask": "build test_fen"
+        },
+        {
+            "name": "Debug perft",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/perft",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "preLaunchTask": "build perft"
         }
     ]
 }

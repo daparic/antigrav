@@ -7,3 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_executable(bitboard bitboard.cpp attacks.cpp movegen.cpp)
 add_executable(perft perft.cpp movegen.cpp attacks.cpp bitboard.cpp)
 target_compile_definitions(perft PRIVATE BITBOARD_LIB)
+
+add_executable(test_fen test_fen.cpp movegen.cpp attacks.cpp bitboard.cpp)
+target_compile_definitions(test_fen PRIVATE BITBOARD_LIB)

@@ -113,3 +113,15 @@ This project implements a basic Chess Bitboard system in C++. It includes bit ma
     - Validated against standard positions.
     - Start Position (Depth 3): **8,902 nodes**.
     - KiwiPete (Depth 1): **48 nodes**.
+
+### 12. FEN to PNG Feature
+**User Request:** Improve bitboard.cpp so that it accepts an options for a FEN string and writes the chessboard image into an output PNG file.
+
+**Agent Action:**
+- **Dependency:** Integrated `stb_image.h` and `stb_image_write.h` for image handling.
+- **Assets:** Downloaded standard 60x60 transparent PNG chess pieces from Wikimedia Commons.
+- **Implementation:**
+    - Updated `bitboard.cpp` to parse CLI arguments (`--fen`, `--output`).
+    - Implemented image loading and alpha blending to render pieces on top of the board squares.
+    - Verified by generating images for standard positions (e.g., KiwiPete).
+- **Usage:** `./build/bitboard --fen "<FEN_STRING>" --output "output.png"`
