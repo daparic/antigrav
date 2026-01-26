@@ -40,7 +40,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/build/mate2",
             "args": [
-                "r1bq2r1/b4pk1/p1pp1p2/1p2pP2/1P2P1PB/3P4/1PPQ2P1/R3K2R w KQ - 0 1"
+                "kbK5/pp6/1P6/8/8/8/8/R7 w - - 0 1"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

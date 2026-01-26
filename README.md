@@ -147,3 +147,10 @@ This project implements a basic Chess Bitboard system in C++. It includes bit ma
 - **Dependency:** Made the `build mate2` task depend on `configure debug`.
 - **Launch:** Added a "Debug mate2" configuration in `.vscode/launch.json`.
 - **Result:** Pressing F5 now automatically builds with debug symbols and launches the debugger.
+
+### 15. Implementation Questions
+**User Request:** Is there a recursive part in this implementation?
+
+**Agent Analysis:**
+- Analyzed `mate2.cpp` and confirmed it uses an **iterative brute-force** approach (nested loops), not recursion.
+- The depth is fixed at 3 ply (White -> Black -> White).
