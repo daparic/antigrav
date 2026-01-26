@@ -1,0 +1,39 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Bitboard (WSL)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/dx/src/ag/antigrav/build/bitboard",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "/home/dx/src/ag/antigrav",
+            "environment": [],
+            "externalConsole": false,
+            "pipeTransport": {
+                "debuggerPath": "/usr/bin/gdb",
+                "pipeProgram": "c:\\windows\\system32\\wsl.exe",
+                "pipeArgs": [
+                    "-d",
+                    "UBUNTU24.04",
+                    "bash",
+                    "-c"
+                ],
+                "pipeCwd": ""
+            },
+            "sourceFileMap": {
+                "/home/dx/src/ag/antigrav": "${workspaceFolder}"
+            },
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "CMake: Build Bitboard"
+        }
+    ]
+}
