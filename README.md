@@ -178,3 +178,5 @@ This project implements a basic Chess Bitboard system in C++. It includes bit ma
 - **Build System:**
     - Updated `CMakeLists.txt` to include `test_leaper`.
     - Updated `.vscode` tasks and launch configurations to support building and debugging `test_leaper` in both WSL and Native Linux modes.
+- **Code Improvement:**
+    - Refactored `test_leaper.cpp` to use a `switch` statement for piece selection instead of `if-else` chains, improving readability.

@@ -37,17 +37,22 @@ int main(int argc, char *argv[]) {
 
   std::cout << "Attacks for " << piece << " on " << sq_str << ":\n";
 
-  if (piece == 'P') {
-    // White Pawn
+  switch (piece) {
+  case 'P':
     attack_bb = pawn_attacks[0][square];
-  } else if (piece == 'p') {
-    // Black Pawn
+    break;
+  case 'p':
     attack_bb = pawn_attacks[1][square];
-  } else if (piece == 'N' || piece == 'n') {
+    break;
+  case 'N':
+  case 'n':
     attack_bb = knight_attacks[square];
-  } else if (piece == 'K' || piece == 'k') {
+    break;
+  case 'K':
+  case 'k':
     attack_bb = king_attacks[square];
-  } else {
+    break;
+  default:
     std::cout << "Invalid piece (use P, p, N, or K)\n";
     return 1;
   }
