@@ -182,6 +182,42 @@
             "detail": "Builds the test_leaper executable"
         },
         {
+            "label": "CMake: Build Test MoveGen",
+            "type": "shell",
+            "windows": {
+                "command": "wsl",
+                "args": [
+                    "-d",
+                    "UBUNTU24.04",
+                    "cmake",
+                    "--build",
+                    "build",
+                    "--target",
+                    "test_movegen",
+                    "--",
+                    "-j"
+                ]
+            },
+            "linux": {
+                "command": "cmake",
+                "args": [
+                    "--build",
+                    "build",
+                    "--target",
+                    "test_movegen",
+                    "--",
+                    "-j"
+                ]
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "dependsOn": "CMake: Configure",
+            "problemMatcher": "$gcc",
+            "detail": "Builds the test_movegen executable"
+        },
+        {
             "label": "CMake: Configure",
             "type": "shell",
             "windows": {

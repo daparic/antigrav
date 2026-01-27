@@ -16,5 +16,9 @@ target_compile_definitions(mate2 PRIVATE BITBOARD_LIB)
 
 
 
+
 add_executable(test_leaper test_leaper.cpp attacks.cpp bitboard.cpp movegen.cpp)
 target_compile_definitions(test_leaper PRIVATE BITBOARD_LIB)
+
+add_executable(test_movegen test_movegen.cpp attacks.cpp bitboard.cpp movegen.cpp)
+target_compile_definitions(test_movegen PRIVATE BITBOARD_LIB)

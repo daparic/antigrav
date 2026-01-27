@@ -280,6 +280,62 @@
                 }
             ],
             "preLaunchTask": "CMake: Build Test Leaper"
+        },
+        {
+            "name": "Debug Test MoveGen (WSL)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/dx/src/ag/antigrav/build/test_movegen",
+            "args": [
+                "7k/8/8/8/7p/pp1p1p2/P3P2P/K7 w - - 0 1"
+            ],
+            "stopAtEntry": false,
+            "cwd": "/home/dx/src/ag/antigrav",
+            "environment": [],
+            "externalConsole": false,
+            "pipeTransport": {
+                "debuggerPath": "/usr/bin/gdb",
+                "pipeProgram": "c:\\windows\\system32\\wsl.exe",
+                "pipeArgs": [
+                    "-d",
+                    "UBUNTU24.04",
+                    "bash",
+                    "-c"
+                ],
+                "pipeCwd": ""
+            },
+            "sourceFileMap": {
+                "/home/dx/src/ag/antigrav": "${workspaceFolder}"
+            },
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "CMake: Build Test MoveGen"
+        },
+        {
+            "name": "Debug Test MoveGen (Native Linux)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/test_movegen",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "CMake: Build Test MoveGen"
         }
     ]
 }
