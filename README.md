@@ -163,3 +163,18 @@ This project implements a basic Chess Bitboard system in C++. It includes bit ma
 - **Result**: Provided 64-bit binary strings for all piece occupancies.
     - Example (All Occupancy): `0000000100000000000000000000000000000000000000100000001100000111`
     - Note: MSB (left) is h1, LSB (right) is a8.
+
+### 17. Leaper Attack Visualization & Code Refactoring
+**User Request:** Create a tool to visualize leaper (Pawn, Knight, King) attack patterns.
+
+**Agent Action:**
+- **Tool Creation:** Created `test_leaper.cpp`.
+    - Accepts piece type (`P`, `N`, `K`) and square (e.g., `e4`) as arguments.
+    - Prints the bitboard of attacks for verification.
+- **Refactoring Experiment:**
+    - user asked if attack tables could be `constexpr` (compile-time initialized).
+    - **Attempt:** Refactored `attacks.cpp` to use `std::array` and `constexpr`.
+    - **Revert:** User decided the "cognitive noise" and complexity of C++ `constexpr` syntax wasn't worth the minor startup gain for this specific use case. Reverted to runtime initialization.
+- **Build System:**
+    - Updated `CMakeLists.txt` to include `test_leaper`.
+    - Updated `.vscode` tasks and launch configurations to support building and debugging `test_leaper` in both WSL and Native Linux modes.

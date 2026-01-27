@@ -220,6 +220,66 @@
                 }
             ],
             "preLaunchTask": "CMake: Build Mate2"
+        },
+        {
+            "name": "Debug Test Leaper (WSL)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/dx/src/ag/antigrav/build/test_leaper",
+            "args": [
+                "N",
+                "e4"
+            ],
+            "stopAtEntry": false,
+            "cwd": "/home/dx/src/ag/antigrav",
+            "environment": [],
+            "externalConsole": false,
+            "pipeTransport": {
+                "debuggerPath": "/usr/bin/gdb",
+                "pipeProgram": "c:\\windows\\system32\\wsl.exe",
+                "pipeArgs": [
+                    "-d",
+                    "UBUNTU24.04",
+                    "bash",
+                    "-c"
+                ],
+                "pipeCwd": ""
+            },
+            "sourceFileMap": {
+                "/home/dx/src/ag/antigrav": "${workspaceFolder}"
+            },
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "CMake: Build Test Leaper"
+        },
+        {
+            "name": "Debug Test Leaper (Native Linux)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/test_leaper",
+            "args": [
+                "N",
+                "e4"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "CMake: Build Test Leaper"
         }
     ]
 }
