@@ -181,3 +181,20 @@ This project implements a basic Chess Bitboard system in C++. It includes bit ma
 - **Code Improvement:**
     - Refactored `test_leaper.cpp` to use a `switch` statement for piece selection instead of `if-else` chains, improving readability.
     - Enhanced `test_leaper` output to mark the piece's source square with an asterisk `*`, making it easier to distinguish from attack bits.
+
+## 18. Move Generation Testing and Portability
+
+**Objective:**
+Verify the move generation logic (specifically pawn moves) and ensure the codebase is portable across different compilers (GCC/Clang vs MSVC).
+
+**Agent Action:**
+- **Tool Creation:** Created `test_movegen.cpp`.
+    - Parses a FEN string to verify move generation for specific board states.
+    - Specifically used to verify Single and Double Pawn pushes (logic at `movegen.cpp:76-80`).
+- **Portability Refactor:**
+    - Replaced the GCC-specific intrinsic `__builtin_ctzll` (Count Trailing Zeros Long Long) with a portable wrapper `count_trailing_zeros`.
+    - **Implementation:** Added `count_trailing_zeros` to `bitboard.h` which switches between `__builtin_ctzll` (GCC/Clang) and `_BitScanForward64` (MSVC) based on the compiler.
+    - Updated `movegen.cpp` and `mate2.cpp` to use this new wrapper.
+- **IDE Configuration:**
+    - Added `CMake: Build Test MoveGen` task to `.vscode/tasks.json`.
+    - Added Debug configurations for `test_movegen` (WSL and Native Linux) to `.vscode/launch.json`.

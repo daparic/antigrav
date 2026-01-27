@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
     }
   } else {
     // Default to start position if no FEN provided
-    fen = "8/8/8/8/8/8/P3P2P/8 w KQkq - 0 1";
+    fen = "7k/8/8/8/7p/pp1p1p2/P3P2P/K7 w - - 0 1";
   }
 
   std::cout << "Testing FEN: " << fen << "\n\n";
