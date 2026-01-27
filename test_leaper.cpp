@@ -14,6 +14,27 @@ int parse_square(const std::string &sq) {
   return rank * 8 + file;
 }
 
+// Custom print to highlight piece position
+void print_leaper_board(U64 bitboard, int piece_square) {
+  std::cout << "\n";
+  for (int rank = 0; rank < 8; rank++) {
+    for (int file = 0; file < 8; file++) {
+      int square = rank * 8 + file;
+      if (!file)
+        std::cout << "  " << 8 - rank << " ";
+
+      if (square == piece_square) {
+        std::cout << " *"; // Highlight piece
+      } else {
+        std::cout << " " << (get_bit(bitboard, square) ? 1 : 0);
+      }
+    }
+    std::cout << "\n";
+  }
+  std::cout << "\n     a b c d e f g h\n\n";
+  std::cout << "     Bitboard: " << bitboard << "\n\n";
+}
+
 int main(int argc, char *argv[]) {
   if (argc != 3) {
     std::cout << "Usage: ./test_leaper <piece: P/N/K> <square: e4>\n";
@@ -57,7 +78,7 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-  print_bitboard(attack_bb);
+  print_leaper_board(attack_bb, square);
 
   return 0;
 }
