@@ -33,11 +33,19 @@ def bundle_assets(assets_dir, output_file):
         f.write("inline std::map<char, Asset> get_embedded_assets() {\n")
         f.write("    std::map<char, Asset> assets;\n")
         for filename in files:
-            piece_char = filename[0]
+            # filename is like 'w_p.png' or 'b_q.png'
+            parts = filename.split('_')
+            if len(parts) < 2:
+                continue
+            color = parts[0] # 'w' or 'b'
+            piece = parts[1][0] # 'p', 'n', etc.
+            
+            piece_char = piece.upper() if color == 'w' else piece.lower()
+            
             var_name = "asset_" + filename.replace('.', '_')
             f.write(f"    assets['{piece_char}'] = {{ {var_name}, {var_name}_len }};\n")
         f.write("    return assets;\n")
-        f.write("}\n\n")
+        f.write("}\n")
 
         f.write("#endif // ASSETS_H\n")
 

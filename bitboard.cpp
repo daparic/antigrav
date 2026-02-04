@@ -29,10 +29,9 @@ load_assets() {
     const char* pieces = "PNBRQKpnbrqk";
     for (int i = 0; i < 12; i++) {
         char p = pieces[i];
-        char lower_p = tolower(p);
 
-        if (embedded_assets.count(lower_p)) {
-            Asset asset = embedded_assets[lower_p];
+        if (embedded_assets.count(p)) {
+            Asset asset = embedded_assets[p];
             int w, h, c;
             unsigned char* data = stbi_load_from_memory(asset.data, asset.size, &w, &h, &c, 4);
 
@@ -42,7 +41,7 @@ load_assets() {
                 std::cerr << "Failed to load embedded image for piece: " << p << "\n";
             }
         } else {
-            std::cerr << "Piece " << p << " not found in embedded assets (tried " << lower_p << ")\n";
+            std::cerr << "Piece " << p << " not found in embedded assets\n";
         }
     }
 }
